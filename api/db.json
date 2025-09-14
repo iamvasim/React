@@ -1,0 +1,34 @@
+{
+    "users":[
+        {
+         "name":"wasim",
+         "age":34,
+         "email":"xyx@gmail.com"
+
+
+        },
+        {
+            "name":"samim",
+            "age":3,
+            "email":"xyx@gmail.com"
+   
+   
+           },
+           {
+            "name":"mosim",
+            "age":34,
+            "email":"xyx@gmail.com"
+   
+   
+           },
+           {
+            "name":"was",
+            "age":34,
+            "email":"xyx@gmail.com"
+   
+   
+           }
+
+
+    ]
+}

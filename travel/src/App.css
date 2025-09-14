@@ -1,0 +1,282 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Theme Colors */
+:root {
+  --primary-blue: #3B82F6;
+  --primary-blue-light: #DBEAFE;
+  --primary-blue-dark: #2563EB;
+  --success-green: #10B981;
+  --warning-amber: #F59E0B;
+  --danger-red: #EF4444;
+  --gray-bg: #F3F4F6;
+  --modal-bg: rgba(0, 0, 0, 0.5);
+  --pulse-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Global Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--gray-bg);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* -------------------- Bus Card -------------------- */
+.bus-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: slideIn 0.5s forwards;
+}
+.bus-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Slide-in animation for cards */
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* -------------------- Seat Layout -------------------- */
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  margin-top: 0.5rem;
+}
+.seat-cell {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.seat-cell:hover {
+  transform: scale(1.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.seat-empty { background-color: #D1FAE5; }
+.seat-reserved { background-color: #FBBF24; }
+.seat-occupied { background-color: #F87171; }
+
+/* Seat click "pop" animation */
+.seat-cell.clicked {
+  animation: pop 0.3s ease forwards;
+}
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+/* -------------------- Occupancy Bars -------------------- */
+.occupancy-bar {
+  height: 0.6rem;
+  border-radius: 8px;
+  transition: width 1s ease, background-color 0.3s ease;
+}
+.occupancy-green { background-color: var(--success-green); }
+.occupancy-yellow { background-color: var(--warning-amber); }
+.occupancy-red { background-color: var(--danger-red); }
+
+/* -------------------- Modals -------------------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: var(--modal-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease forwards;
+}
+.rating-modal {
+  width: 90%;
+  max-width: 480px;
+  background-color: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: slideDown 0.3s ease forwards;
+}
+@keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes slideDown { 0% { transform: translateY(-50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+
+/* -------------------- Floating Buttons -------------------- */
+.fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--primary-blue);
+  color: #fff;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  animation: pulse 2s infinite;
+  transition: transform 0.3s ease;
+}
+.fab:hover {
+  transform: scale(1.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--pulse-color); }
+  70% { box-shadow: 0 0 0 10px rgba(59,130,246,0); }
+  100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+}
+
+/* -------------------- Header / Navbar -------------------- */
+header {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+header button:hover {
+  transform: scale(1.05);
+  background-color: #f0f4ff;
+  transition: all 0.3s ease;
+}
+
+/* -------------------- Notifications Badge -------------------- */
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: var(--danger-red);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  animation: bounce 1s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* -------------------- Pulse Animation for Live Bus -------------------- */
+.bus-location {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--primary-blue);
+}
+.bus-location::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--primary-blue);
+  top: 0; left: 0;
+  animation: busPulse 1.5s infinite;
+}
+@keyframes busPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(2); opacity: 0; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 768px) {
+  .seat-grid { grid-template-columns: repeat(4, 1fr); }
+}
+/* -------------------------
+   Seat Layout Grid Styles
+   ------------------------- */
+   .seat-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* adjust columns based on bus */
+    gap: 4px;
+  }
+  
+  .seat-cell {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: transform 0.2s, background-color 0.3s;
+  }
+  
+  .seat-cell.seat-empty {
+    background-color: #34d399; /* green */
+  }
+  
+  .seat-cell.seat-reserved {
+    background-color: #fbbf24; /* yellow */
+  }
+  
+  .seat-cell.seat-occupied {
+    background-color: #f87171; /* red */
+  }
+  
+  .legend-box {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+  }
+  
+  /* -------------------------
+     Rating Modal Styles
+     ------------------------- */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 60;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .rating-modal {
+    background: #ffffff;
+    border-radius: 8px;
+    width: 360px;
+    max-width: 95%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 70;
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .rating-modal input[type="range"] {
+    width: 100%;
+    margin-top: 4px;
+  }
+  
+  /* -------------------------
+     Notifications Dropdown
+     ------------------------- */
+  .notifications-dropdown {
+    max-height: 256px; /* 64 * 4 */
+    overflow-y: auto;
+  }
+  
+  /* -------------------------
+     Utility Animations
+     ------------------------- */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  

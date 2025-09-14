@@ -1,0 +1,8 @@
+{
+    "users": [
+      { "id": 1, "firstName": "Vasim", "lastName": "Khan" },
+      { "id": 2, "firstName": "Ayesha", "lastName": "Patel" },
+      { "id": 3, "firstName": "Rohit", "lastName": "Sharma" }
+    ]
+  }
+  

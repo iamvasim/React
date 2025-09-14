@@ -1,0 +1,38 @@
+/* App.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.user-card {
+  background-color: #4ade80; /* green shade */
+  color: #fff;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.user-card h2 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+}
+
+.user-card p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
